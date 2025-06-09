@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 15s
+
+remote_write:
+  - url: https://prometheus-prod-37-prod-ap-southeast-1.grafana.net/api/prom/push
+    basic_auth:
+      username: 2352807
+      password: glc_eyJvIjoiMTM4OTk3OCIsIm4iOiJzdGFjay0xMjE0Mjg0LWFsbG95LXN0dW50aW5nLWRldGVjdGlvbiIsImsiOiJHMzI0ZUNvQ3FnMTBxMTFZVHM2ZkY0dTYiLCJtIjp7InIiOiJwcm9kLWFwLXNvdXRoZWFzdC0xIn19
+
+scrape_configs:
+  - job_name: 'inference_service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['127.0.0.1:8000']
+
+  - job_name: 'prometheus_self'
+    static_configs:
+      - targets: ['localhost:9090']
